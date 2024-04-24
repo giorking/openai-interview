@@ -13,8 +13,6 @@ def initiate_chat_system(model="gpt-3.5-turbo", temperature=0, system_content="Y
         ]
     )
 
-    return None
-
 def get_chat_completion(model="gpt-3.5-turbo", temperature=0, user_content="Please find the airline names in this tweet"):
     client = OpenAI(
         # Defaults to os.environ.get("OPENAI_API_KEY")
