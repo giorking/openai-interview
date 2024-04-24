@@ -1,9 +1,8 @@
 # local history
 .history/
 
-# input files
-airline_test.csv
-airline_train.csv
+# csv files
+*.csv
 
 # python files
 venv/
