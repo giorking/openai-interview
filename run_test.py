@@ -28,9 +28,9 @@ def calculate_performance(data):
     
     return performance_ratio
 
-def run_test(input_csv, output_csv, model="gpt-3.5-turbo", temperature=0.0, user_content_header="Please find the airline names in this tweet: "):
+def run_test(input_csv, output_csv, model="gpt-3.5-turbo", temperature=0.0, system_content="You are a helpful assistant.", user_content_header="Please find the airline names in this tweet: "):
     # Initiate the chat system
-    initiate_chat_system(model=model, temperature=temperature)
+    initiate_chat_system(model=model, temperature=temperature, system_content=system_content)
 
     # Load the data from CSV
     data = load_data_from_csv(input_csv)

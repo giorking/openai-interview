@@ -1,10 +1,10 @@
 from run_test import run_test
 import pandas as pd
 import warnings
-from test_details import test_details
+from zero_shot_test_details import test_details
 
 # Test CSV file name
-test_csv = 'airline_test.csv'
+test_csv = 'airline_test_short.csv'
 
 # Prepare a DataFrame to store results
 results_df = pd.DataFrame(columns=['Test Name', 'Performance'])
