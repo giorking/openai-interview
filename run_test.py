@@ -28,9 +28,9 @@ def calculate_performance(data):
     
     return performance_ratio
 
-def run_test(input_csv, output_csv, user_content_header="Please find the airline names in this tweet: "):
+def run_test(input_csv, output_csv, model="gpt-3.5-turbo", temperature=0.0, user_content_header="Please find the airline names in this tweet: "):
     # Initiate the chat system
-    initiate_chat_system()
+    initiate_chat_system(model=model, temperature=temperature)
 
     # Load the data from CSV
     data = load_data_from_csv(input_csv)
@@ -42,7 +42,7 @@ def run_test(input_csv, output_csv, user_content_header="Please find the airline
     def find_airline_names(tweet, index):
         if index % 50 == 0 or index == total_entries - 1:
             print(f"Processing {index + 1}/{total_entries} entries...")
-        chat_completion = get_chat_completion(user_content=user_content_header + tweet)
+        chat_completion = get_chat_completion(user_content=user_content_header + tweet, model=model, temperature=temperature)
         # airline_names will always be an array of strings
         airline_names = chat_completion.split(',')
         return airline_names
