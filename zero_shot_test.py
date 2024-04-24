@@ -3,7 +3,7 @@ import pandas as pd
 import warnings
 
 # Test CSV file name
-test_csv = 'airline_test_short.csv'
+test_csv = 'airline_test.csv'
 
 # Prepare a DataFrame to store results
 results_df = pd.DataFrame(columns=['Test Name', 'Performance'])
@@ -70,10 +70,10 @@ results_df = pd.concat([results_df, new_row], ignore_index=True)
 # Additional guidance 2 test
 # Model: gpt-3.5-turbo
 # Temperature: 0.0
-# Prompt: Please find the airline names in this tweet. List the full name of the airline. Don't use abbreviations. Separate airline names with commas. Only include common airlines. Use spaces between words. Tweet:
+# Prompt: Please find the airline names in this tweet. List the full name of the airline. Don't use abbreviations. Separate airline names with commas. Include airlines ONLY. For airlines like US Airways, include the space. Tweet:
 print("Running additional guidance 2 test...")
 try:
-    result_06 = run_test(test_csv, 'airline_test_zero_shot_guidance_2.csv', user_content_header="Please find the airline names in this tweet. List the full name of the airline. Don't use abbreviations. Separate airline names with commas. Only include common airlines. Use spaces between words. Tweet:")
+    result_06 = run_test(test_csv, 'airline_test_zero_shot_guidance_2.csv', user_content_header="Please find the airline names in this tweet. List the full name of the airline. Don't use abbreviations. Separate airline names with commas. Include airlines ONLY. For airlines like US Airways, include the space. Tweet:")
     print("Additional guidance 2 test performance:", result_06)
     new_row = pd.DataFrame({'Test Name': ['Additional Guidance 2 Test'], 'Performance': [result_06]})
 except Exception as e:
