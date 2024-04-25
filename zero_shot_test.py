@@ -4,7 +4,7 @@ import warnings
 from zero_shot_test_details import test_details
 
 # Test CSV file name
-test_csv = 'airline_test_short.csv'
+test_csv = 'airline_test.csv'
 
 # Prepare a DataFrame to store results
 results_df = pd.DataFrame(columns=['Test Name', 'Performance'])

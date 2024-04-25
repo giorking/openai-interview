@@ -20,11 +20,11 @@ previous_results_df = pd.read_csv('zero_shot_results.csv')
 # Handle potential errors in performance values that are not numeric
 previous_results_df['Performance'] = pd.to_numeric(previous_results_df['Performance'], errors='coerce')
 
-# Find the test with the highest performance and add it to the results DataFrame
-best_test_name = previous_results_df.loc[previous_results_df['Performance'].idxmax(), 'Test Name']
-best_test_performance = previous_results_df.loc[previous_results_df['Performance'].idxmax(), 'Performance']
-best_test_result = pd.DataFrame({'Test Name': ['Zero-shot Best Test'], 'Performance': [best_test_performance]})
-results_df = pd.concat([results_df, best_test_result], ignore_index=True)
+# Get the performance number for "Baseline Test" and add it to the results DataFrame
+baseline_test_name = "Baseline Test"
+baseline_test_performance = previous_results_df.loc[previous_results_df['Test Name'] == baseline_test_name, 'Performance'].values[0]
+baseline_test_result = pd.DataFrame({'Test Name': [baseline_test_name], 'Performance': [baseline_test_performance]})
+results_df = pd.concat([results_df, baseline_test_result], ignore_index=True)
 
 # Load the first 10 rows of the test_csv into an array to use for few-shot tests
 test_data_array = pd.read_csv(test_csv, nrows=10).values
@@ -37,8 +37,8 @@ for test_name, num_rows in few_shot_test_cases.items():
     system_content = f"You are a helpful assistant that finds airline names in tweets.\n\nBelow are some examples of how to respond to tweets you are given.\n{sample_data}"
 
     try:
-        # Use the best performing test details for all few-shot tests
-        best_test_details = test_details[best_test_name]
+        # Use the baseline test details for all few-shot tests
+        best_test_details = test_details[baseline_test_name]
         run_test_kwargs = {
             "input_csv": test_csv,
             "output_csv": "airline_test_few_shot_" + str(num_rows) + ".csv",
@@ -60,5 +60,5 @@ for test_name, num_rows in few_shot_test_cases.items():
     results_df = pd.concat([results_df, new_row], ignore_index=True)
 
 # Export results to CSV
-results_df.to_csv('few_shot_results.csv', index=False)
+results_df.to_csv('few_shot_base_results.csv', index=False)
 
