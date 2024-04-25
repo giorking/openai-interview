@@ -1,6 +1,11 @@
 from openai import OpenAI
 
-def initiate_chat_system(model="gpt-3.5-turbo", temperature=0, system_content="You are a helpful assistant"):
+default_model = "gpt-3.5-turbo"
+default_temperature = 0
+default_system_content = "You are a helpful assistant"
+default_user_content = "Please find the airline names in this tweet:"
+
+def initiate_chat_system(model=default_model, temperature=default_temperature, system_content=default_system_content):
     client = OpenAI(
         # Defaults to os.environ.get("OPENAI_API_KEY")
     )
@@ -13,7 +18,7 @@ def initiate_chat_system(model="gpt-3.5-turbo", temperature=0, system_content="Y
         ]
     )
 
-def get_chat_completion(model="gpt-3.5-turbo", temperature=0, user_content="Please find the airline names in this tweet"):
+def get_chat_completion(model=default_model, temperature=default_temperature, user_content=default_user_content):
     client = OpenAI(
         # Defaults to os.environ.get("OPENAI_API_KEY")
     )

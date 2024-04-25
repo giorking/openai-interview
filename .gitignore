@@ -1,8 +1,9 @@
 # local history
 .history/
 
-# csv files
+# data files
 *.csv
+*.jsonl
 
 # python files
 venv/
